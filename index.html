@@ -1,1 +1,112 @@
-FUCK YOU BRO 💿
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Dettagli Prelievo - Binance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #000000;
+      color: #FFD700;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background-color: #111;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px #FFD70055;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 100px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .amount {
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .processing {
+      text-align: center;
+      font-weight: bold;
+      color: #FFD700;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    .details {
+      margin-top: 20px;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    .fee {
+      color: #00FF00;
+      font-weight: bold;
+    }
+    button {
+      display: block;
+      width: 100%;
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e6c200;
+    }
+    button.clicked::after {
+      content: " ✅";
+      color: #00FF00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.svg" alt="Binance Logo">
+    </div>
+
+    <h1>Dettagli Prelievo</h1>
+    <div class="amount">-2000 USDT</div>
+    <div class="processing">⚠️ Elaborazione</div>
+    <p style="text-align:center;">⚠️ La transazione potrebbe fallire a causa di problemi di rete o saldo insufficiente.</p>
+
+    <div class="details">
+      <p>⏰ Tempo stimato di completamento: 2025-09-17 21:56:00</p>
+      <p>📧 Riceverai un'email al termine dell'operazione.</p>
+      <p>🌐 Rete: BTC (Bitcoin)</p>
+      <p>📥 Indirizzo: 15adsusUQPjgEs3tqiRZJo56dELpf8MDuh</p>
+      <p>💰 Importo: 2000 USDT</p>
+      <p class="fee">💸 Commissione di rete: 48 USDT</p>
+      <p>👛 Portafoglio: Portafoglio Spot</p>
+      <p>📅 Data: 2025-09-17 21:54:00</p>
+    </div>
+
+    <button onclick="this.classList.add('clicked')">Salva Indirizzo</button>
+  </div>
+
+</body>
+</html>
+
