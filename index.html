@@ -1,112 +1,252 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <title>Binance</title>
+  <title>PAYMENT.SUFCESSFUL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Binance-like fonts and colors -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      background-color: #000000;
-      color: #FFD700;
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --binance-yellow: #fcd535;
+      --binance-black: #181a20;
+      --binance-gray: #23262f;
+      --binance-green: #0ecb81;
+      --binance-ash: #eaecef;
+      --binance-light-gray: #f5f5f5;
+      --binance-border: #eaecef;
     }
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background-color: #111;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 10px #FFD70055;
+    body { 
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+      background: var(--binance-black); 
+      margin: 0; 
+      padding: 0; 
+      color: #fff;
+      min-height: 100vh;
     }
-    .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
+    .header { 
+      display: flex; align-items: center; 
+      padding: 1.2rem 1.1rem 0.4rem 1.1rem; 
+      background: var(--binance-gray); 
+      border-bottom: 1px solid var(--binance-border);
     }
-    .logo img {
-      width: 100px;
+    .bell, .menu, .profile {
+      width: 34px; height: 34px; background: var(--binance-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; position: relative;
     }
-    h1 {
-      text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 10px;
+    .bell-dot { position: absolute; top: 8px; right: 7px; width: 8px; height: 8px; background: var(--binance-yellow); border-radius: 50%; }
+    .profile { background: linear-gradient(135deg, #fcd535 40%, #e19e39 100%);}
+    .email { font-size: 16px; color: #f3ba2f; margin: 0 10px; flex: 1; font-weight: 600; white-space: nowrap; }
+    .search-bar { margin: 18px 16px 0 16px; background: var(--binance-light-gray); border-radius: 8px; padding: 13px 14px; color: #23262f; border: none; width: calc(100% - 32px); font-size: 14px; }
+    .section { margin: 21px 16px 90px 16px; }
+    .wallet-balance { display: flex; align-items: flex-end; justify-content: space-between; }
+    .wallet-balance .balance { font-weight: bold; font-size: 2.2rem; color: var(--binance-yellow); }
+    .wallet-balance .currency { font-size: 1.2rem; color: #fff; font-weight: 400; margin-left: 6px;}
+    .wallet-balance .percent { color: var(--binance-green); font-size: 1.1rem; margin-right: 12px; }
+    .wallet-title {color: #c2c2c2; font-size: 1.1rem; margin-bottom: 6px;}
+    .actions { display: flex; justify-content: space-between; margin: 30px 0 10px 0; gap: 12px;}
+    .action-btn { 
+      background: var(--binance-ash); 
+      color: var(--binance-black); 
+      border: none; 
+      border-radius: 16px; 
+      width: 65px; 
+      height: 65px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 15px; 
+      box-shadow: 0 1px 8px rgba(0,0,0,0.09);
+      cursor: not-allowed;
+      transition: background 0.1s, color 0.1s;
+      opacity: 0.65;
+      position: relative;
     }
-    .amount {
-      font-size: 2em;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .processing {
-      text-align: center;
-      font-weight: bold;
-      color: #FFD700;
-      animation: blink 1.5s infinite;
-    }
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-    .details {
-      margin-top: 20px;
-      font-size: 1em;
-      line-height: 1.6;
-    }
-    .fee {
-      color: #00FF00;
-      font-weight: bold;
-    }
-    button {
-      display: block;
-      width: 100%;
-      background-color: #FFD700;
-      color: #000;
-      border: none;
-      padding: 12px;
-      margin-top: 20px;
-      font-size: 1em;
-      border-radius: 8px;
+    .action-btn.withdrawal {
+      background: var(--binance-green);
+      color: #fff;
+      font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      opacity: 1;
+      border: 2px solid #0ecb81;
+      box-shadow: 0 2px 12px rgba(14,203,129,0.15);
     }
-    button:hover {
-      background-color: #e6c200;
+    .action-label { margin-top: 5px; font-size: 15px; color: #23262f; font-weight: 500;}
+    .action-btn.withdrawal .action-label { color: #fff;}
+    .history { background: var(--binance-gray); border-radius: 11px; padding: 10px 18px; margin: 18px 0 0 0; font-size: 16px; color: #b8b8b8;}
+    .cards { display: flex; gap: 14px; margin: 18px 0 0 0;}
+    .card { 
+      background: var(--binance-light-gray); 
+      border-radius: 16px; 
+      padding: 20px 13px; 
+      flex: 1; 
+      text-align: center; 
+      font-size: 15px;
+      color: var(--binance-black);
+      min-width: 0;
+      border: 1px solid var(--binance-border);
+      box-shadow: 0 1px 5px rgba(0,0,0,0.04); 
     }
-    button.clicked::after {
-      content: " ✅";
-      color: #00FF00;
+    .card-title {
+      font-size: 17px; font-weight: 600; color: #23262f;
+      margin-bottom: 9px;
+    }
+    .amount { font-size: 18px; margin: 7px 0 2px 0; color: #23262f; font-weight: 500;}
+    .card-desc {color: #8e8e93; font-size: 14px;}
+    .footer { 
+      position: fixed; 
+      width: 100%; 
+      bottom: 0; 
+      left: 0; 
+      background: var(--binance-gray); 
+      display: flex; 
+      justify-content: space-around; 
+      align-items: center; 
+      border-top: 1px solid var(--binance-border);
+      padding: 7px 0 4px 0;
+      z-index: 10;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.10);
+    }
+    .footer-btn {
+      display: flex; flex-direction: column; align-items: center; color: #b8b8b8; font-size: 13px; text-decoration: none; font-weight: 500;
+    }
+    .footer-btn.active { color: var(--binance-yellow);}
+    .footer-center {
+      background: var(--binance-yellow); 
+      width: 56px; 
+      height: 56px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin-top: -30px;
+      border: 2px solid #fff4a3;
+      font-size: 30px;
+      color: var(--binance-black);
+      box-shadow: 0 2px 12px rgba(252,213,53,0.25);
+    }
+    .modal {
+      display: none; 
+      position: fixed; 
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.36);
+      align-items: center; justify-content: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #fff; 
+      padding: 36px 28px; 
+      border-radius: 14px; 
+      text-align: center;
+      font-size: 21px;
+      color: #e19e39;
+      font-weight: 700;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.13);
+    }
+    @media (max-width: 600px) {
+      .section {margin-bottom: 110px;}
+      .cards {flex-direction: column;}
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="logo">
-      <img src="IMG_4307.webp" alt="Binance Logo">
+  <div class="header">
+    <div class="bell">
+      <svg width="20" height="20" fill="#fcd535"><circle cx="10" cy="13" r="7" /></svg>
+      <span class="bell-dot"></span>
     </div>
-
-    <h1>Dettagli Prelievo</h1>
-    <div class="amount">-2000 USD</div>
-    <div class="processing">⚠️ Elaborazione</div>
-    <p style="text-align:center;">⚠️ La transazione potrebbe fallire a causa di problemi di rete o saldo insufficiente.</p>
-
-    <div class="details">
-      <p>⏰ Tempo stimato di completamento: 2025-09-17 21:56:00</p>
-      <p>📧 Riceverai un'email al termine dell'operazione.</p>
-      <p>🌐 Rete: BTC (Bitcoin)</p>
-      <p>📥 Indirizzo: 15adsusUQPjgEs3tqiRZJo56dELpf8MDuh</p>
-      <p>💰 Importo: 2000 USD</p>
-      <p class="fee">💸 Commissione di rete: 48 USD</p>
-      <p>👛 Portafoglio: Portafoglio Spot</p>
-      <p>📅 Data: 2025-09-17 21:54:00</p>
+    <div class="menu">
+      <svg width="20" height="20" fill="#fcd535"><rect width="18" height="3" y="4"/><rect width="18" height="3" y="10"/><rect width="18" height="3" y="16"/></svg>
     </div>
-
-    <button onclick="this.classList.add('clicked')">Salva Indirizzo</button>
+    <span class="email">‪+393922318745‬</span>
+    <div class="profile"></div>
   </div>
-
+  <input class="search-bar" type="text" placeholder="Cerca attività del conto e altro...">
+  <div class="section">
+    <div class="wallet-title">Portafoglio conto</div>
+    <div class="wallet-balance">
+      <div class="percent">(+€32) 6864% &uarr;</div>
+      <div>
+        <span class="balance">€2.000</span>
+        <span class="currency">EUR</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="action-btn" disabled>
+        <div>
+          <svg width="27" height="27" fill="#b8b8b8"><rect width="19" height="4" x="4" y="12"/></svg>
+        </div>
+        <div class="action-label">Acquista/Vendi</div>
+      </button>
+      <button class="action-btn" disabled>
+        <div>
+          <svg width="27" height="27" fill="#b8b8b8"><rect width="19" height="4" x="4" y="12" transform="rotate(90 13.5 13.5)"/></svg>
+        </div>
+        <div class="action-label">Converti</div>
+      </button>
+      <button class="action-btn" disabled>
+        <div>
+          <svg width="27" height="27" fill="#b8b8b8"><polygon points="13.5,22 24,7 3,7"/></svg>
+        </div>
+        <div class="action-label">Ricevi</div>
+      </button>
+      <button class="action-btn withdrawal" id="withdrawBtn">
+        <div>
+          <svg width="27" height="27" fill="#fff"><polygon points="13.5,4 24,20 3,20"/></svg>
+        </div>
+        <div class="action-label">Preleva</div>
+      </button>
+    </div>
+    <div class="history">
+      <span>un mese fa</span>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">Prestiti</div>
+        <div class="amount">€10.000</div>
+        <div class="card-desc">Disponibile per prestito</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Risparmi</div>
+        <div class="amount">fino al 10%</div>
+        <div class="card-desc">Inizia a guadagnare ora...</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="#" class="footer-btn active">
+      <svg width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+      Home
+    </a>
+    <a href="#" class="footer-btn">
+      <svg width="24" height="24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/></svg>
+      Risorse
+    </a>
+    <div class="footer-center">
+      <span style="font-size: 30px;">⇅</span>
+    </div>
+    <a href="#" class="footer-btn">
+      <svg width="24" height="24" fill="currentColor"><circle cx="12" cy="7" r="5"/><rect x="7" y="13" width="10" height="7" rx="3"/></svg>
+      Contatti
+    </a>
+    <a href="#" class="footer-btn">
+      <svg width="24" height="24" fill="currentColor"><rect width="18" height="18" x="3" y="3" rx="5"/></svg>
+      Scopri
+    </a>
+  </div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      €80 necessari per sbloccare il pagamento
+    </div>
+  </div>
+  <script>
+    const withdrawBtn = document.getElementById('withdrawBtn');
+    const modal = document.getElementById('modal');
+    withdrawBtn.addEventListener('click', function() {
+      modal.style.display = 'flex';
+      setTimeout(() => { modal.style.display = 'none'; }, 3000);
+    });
+  </script>
 </body>
 </html>
-
